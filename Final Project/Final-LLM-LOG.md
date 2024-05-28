@@ -1363,6 +1363,257 @@ Key Presence Check: Before accumulating the metrics, it ensures the keys are pre
 Counting Occurrences: Keeps track of how many times each metric was added to handle the averaging correctly.
 This code ensures that the function will not throw a KeyError and will correctly average the classification reports even if some runs lack certain keys.
 
+--------------------------Model for MY---------------------------
+Training and evaluating Logistic Regression...
+          Label Precision    Recall  F1-Score      Support
+0             1   0.44631  0.099599  0.162783   749.000000
+1             2  0.415261  0.275676  0.331265  1036.000000
+2             3  0.486027  0.797109  0.603842  1453.000000
+3      accuracy                                   0.468931
+4     macro avg  0.449199  0.390795  0.365963  3238.000000
+5  weighted avg  0.454198  0.468931  0.414607  3238.000000
+Time taken: 8.13 seconds
+
+Training and evaluating Decision Tree...
+          Label Precision    Recall  F1-Score      Support
+0             1  0.336422   0.17757  0.232137   749.000000
+1             2  0.385142  0.328378  0.352277  1036.000000
+2             3  0.489523    0.6585  0.560933  1453.000000
+3      accuracy                                   0.441631
+4     macro avg  0.403696  0.388149  0.381783  3238.000000
+5  weighted avg  0.420712  0.441631  0.418118  3238.000000
+Time taken: 0.91 seconds
+
+Training and evaluating Random Forest...
+          Label Precision    Recall  F1-Score      Support
+0             1  0.310713  0.112417   0.16506   749.000000
+1             2  0.378685  0.288803  0.327646  1036.000000
+2             3  0.479464  0.718376  0.575088  1453.000000
+3      accuracy                                   0.440766
+4     macro avg  0.389621  0.373198  0.355931  3238.000000
+5  weighted avg  0.408185  0.440766  0.401073  3238.000000
+Time taken: 5.12 seconds
+
+Training and evaluating AdaBoost...
+          Label Precision    Recall  F1-Score      Support
+0             1  0.405023  0.179439  0.248184   749.000000
+1             2  0.418422  0.357915  0.384528  1036.000000
+2             3  0.504833  0.700619  0.586362  1453.000000
+3      accuracy                                   0.470414
+4     macro avg  0.442759  0.412658  0.406358  3238.000000
+5  weighted avg  0.454098  0.470414   0.44356  3238.000000
+Time taken: 16.58 seconds
+
+Training and evaluating XGBoost...
+          Label Precision    Recall  F1-Score      Support
+0             1  0.325195  0.175968  0.228225   749.000000
+1             2  0.384913  0.340541  0.361335  1036.000000
+2             3  0.487716  0.643083  0.554694  1453.000000
+3      accuracy                                   0.438233
+4     macro avg  0.399275  0.386531  0.381418  3238.000000
+5  weighted avg  0.417231  0.438233  0.417311  3238.000000
+Time taken: 80.80 seconds 
+Training and evaluating LightGBM...M] [Info] Start training from score -0.206412
+          Label Precision    Recall  F1-Score      Support
+0             1  0.429043  0.102003  0.164618   749.000000
+1             2  0.431591  0.265444  0.328564  1036.000000
+2             3  0.484294  0.806745  0.605215  1453.000000
+3      accuracy                                   0.470537
+4     macro avg  0.448309  0.391397  0.366132  3238.000000
+5  weighted avg  0.454651  0.470537  0.414783  3238.000000
+Time taken: 2.71 seconds
+
+--------------------------Model for US---------------------------
+Training and evaluating Logistic Regression...
+          Label Precision    Recall  F1-Score      Support
+0             1  0.413336  0.061538   0.10694   221.000000
+1             2  0.509848  0.815213  0.627293   539.000000
+2             3  0.458246  0.299744  0.361955   391.000000
+3      accuracy                                   0.495395
+4     macro avg  0.460476  0.392165  0.365396  1151.000000
+5  weighted avg  0.473787  0.495395  0.437245  1151.000000
+Time taken: 2.69 seconds
+
+Training and evaluating Decision Tree...
+          Label Precision    Recall  F1-Score      Support
+0             1  0.231247  0.130317  0.166152   221.000000
+1             2   0.49482  0.685714  0.574692   539.000000
+2             3  0.421236  0.300767  0.350081   391.000000
+3      accuracy                                   0.448306
+4     macro avg  0.382434  0.372266  0.363641  1151.000000
+5  weighted avg  0.419216  0.448306  0.419948  1151.000000
+Time taken: 0.42 seconds
+
+Training and evaluating Random Forest...
+          Label Precision    Recall  F1-Score      Support
+0             1  0.331414  0.089593  0.140846   221.000000
+1             2  0.501555  0.635993  0.560805   539.000000
+2             3  0.391962  0.409719  0.400609   391.000000
+3      accuracy                                   0.454214
+4     macro avg   0.40831  0.378435   0.36742  1151.000000
+5  weighted avg  0.431658  0.454214  0.425751  1151.000000
+Time taken: 1.99 seconds
+
+Training and evaluating AdaBoost...
+          Label Precision    Recall  F1-Score      Support
+0             1  0.356718  0.126697  0.186258   221.000000
+1             2   0.52482  0.757328  0.619796   539.000000
+2             3  0.479932  0.361125  0.411668   391.000000
+3      accuracy                                   0.501651
+4     macro avg  0.453823   0.41505  0.405907  1151.000000
+5  weighted avg  0.477295  0.501651  0.465852  1151.000000
+Time taken: 6.98 seconds
+
+Training and evaluating XGBoost...
+          Label Precision    Recall  F1-Score      Support
+0             1  0.320156  0.155656  0.209204   221.000000
+1             2   0.51969  0.676067   0.58765   539.000000
+2             3  0.447777  0.391816  0.417876   391.000000
+3      accuracy                                   0.479583
+4     macro avg  0.429208  0.407846   0.40491  1151.000000
+5  weighted avg  0.456949  0.479583  0.457313  1151.000000
+Time taken: 30.48 seconds
+
+Training and evaluating LightGBM... Label Precision    Recall  F1-Score      Support
+0             1  0.390476  0.079638   0.13204   221.000000
+1             2  0.517068  0.824119  0.635397   539.000000
+2             3  0.504641  0.317647  0.389655   391.000000
+3      accuracy                                   0.509123
+4     macro avg  0.470728  0.407135  0.385697  1151.000000
+5  weighted avg   0.48854  0.509123  0.455269  1151.000000
+Time taken: 1.28 seconds
+
+--------------------------Model for others---------------------------
+Training and evaluating Logistic Regression...
+          Label Precision    Recall  F1-Score     Support
+0             1  0.616667    0.0107  0.020937   243.00000
+1             2  0.415633  0.151487  0.221762   437.00000
+2             3    0.5646  0.924845  0.701145   809.00000
+3      accuracy                                   0.54869
+4     macro avg    0.5323  0.362344  0.314615  1489.00000
+5  weighted avg  0.529377   0.54869  0.449445  1489.00000
+Time taken: 2.58 seconds
+
+Training and evaluating Decision Tree...
+          Label Precision    Recall  F1-Score    Support
+0             1  0.194968  0.088066  0.121067   243.0000
+1             2  0.349098  0.298398  0.321417   437.0000
+2             3  0.582124  0.724351  0.645393   809.0000
+3      accuracy                                   0.4955
+4     macro avg  0.375397  0.370272  0.362626  1489.0000
+5  weighted avg  0.450552    0.4955  0.464742  1489.0000
+Time taken: 0.53 seconds
+
+Training and evaluating Random Forest...
+          Label Precision    Recall  F1-Score      Support
+0             1  0.186868  0.028807   0.04981   243.000000
+1             2  0.387094  0.189474  0.254273   437.000000
+2             3   0.56453  0.864277  0.682952   809.000000
+3      accuracy                                   0.529886
+4     macro avg  0.379497  0.360852  0.329012  1489.000000
+5  weighted avg  0.450822  0.529886  0.453814  1489.000000
+Time taken: 2.22 seconds
+
+Training and evaluating AdaBoost...
+          Label Precision    Recall  F1-Score     Support
+0             1  0.327143  0.011523   0.02212   243.00000
+1             2  0.411666  0.175286  0.244148   437.00000
+2             3  0.568428  0.908282  0.699135   809.00000
+3      accuracy                                   0.54681
+4     macro avg  0.435745   0.36503  0.321801  1489.00000
+5  weighted avg  0.483044   0.54681  0.455116  1489.00000
+Time taken: 8.74 seconds
+
+Training and evaluating XGBoost...
+          Label Precision    Recall  F1-Score      Support
+0             1   0.24155   0.06749    0.1051   243.000000
+1             2  0.393741  0.287414  0.332205   437.000000
+2             3  0.587249  0.799753  0.677212   809.000000
+3      accuracy                                   0.529886
+4     macro avg  0.407513  0.384886  0.371506  1489.000000
+5  weighted avg   0.47404  0.529886  0.482591  1489.000000
+Time taken: 38.98 seconds
+
+Training and evaluating LightGBM...          Label Precision    Recall  F1-Score     Support
+0             1       0.0       0.0       0.0   243.00000
+1             2  0.425804   0.18032  0.252257   437.00000
+2             3  0.566623  0.910754  0.698542   809.00000
+3      accuracy                                   0.54775
+4     macro avg  0.330809  0.363691  0.316933  1489.00000
+5  weighted avg  0.432824   0.54775  0.453564  1489.00000
+Time taken: 1.48 seconds, tüm bu sonuç df lerini md formatında yaz
+ChatGPT
+Here's a markdown format summary of the model evaluation results for each dataset:
+
+Model for MY
+Logistic Regression
+Label	Precision	Recall	F1-Score	Support
+1	0.44631	0.0996	0.1628	749
+2	0.41526	0.2757	0.3313	1036
+3	0.48603	0.7971	0.6038	1453
+Accuracy			0.4689	
+Macro avg	0.4492	0.3908	0.3660	3238
+Weighted avg	0.4542	0.4689	0.4146	3238
+Time taken:	8.13 seconds			
+Decision Tree
+Label	Precision	Recall	F1-Score	Support
+1	0.33642	0.1776	0.2321	749
+2	0.38514	0.3284	0.3523	1036
+3	0.48952	0.6585	0.5609	1453
+Accuracy			0.4416	
+Macro avg	0.4037	0.3881	0.3818	3238
+Weighted avg	0.4207	0.4416	0.4181	3238
+Time taken:	0.91 seconds			
+Random Forest
+Label	Precision	Recall	F1-Score	Support
+1	0.31071	0.1124	0.1651	749
+2	0.37869	0.2888	0.3276	1036
+3	0.47946	0.7184	0.5751	1453
+Accuracy			0.4408	
+Macro avg	0.3896	0.3732	0.3559	3238
+Weighted avg	0.4082	0.4408	0.4011	3238
+Time taken:	5.12 seconds			
+AdaBoost
+Label	Precision	Recall	F1-Score	Support
+1	0.40502	0.1794	0.2482	749
+2	0.41842	0.3579	0.3845	1036
+3	0.50483	0.7006	0.5864	1453
+Accuracy			0.4704	
+Macro avg	0.4428	0.4127	0.4064	3238
+Weighted avg	0.4541	0.4704	0.4436	3238
+Time taken:	16.58 seconds			
+XGBoost
+Label	Precision	Recall	F1-Score	Support
+1	0.32520	0.1760	0.2282	749
+2	0.38491	0.3405	0.3613	1036
+3	0.48772	0.6431	0.5547	1453
+Accuracy			0.4382	
+Macro avg	0.3993	0.3865	0.3814	3238
+Weighted avg	0.4172	0.4382	0.4173	3238
+Time taken:	80.80 seconds			
+LightGBM
+Label	Precision	Recall	F1-Score	Support
+1	0.42904	0.1020	0.1646	749
+2	0.43159	0.2654	0.3286	1036
+3	0.48429	0.8067	0.6052	1453
+Accuracy			0.4705	
+Macro avg	0.4483	0.3914	0.3661	3238
+Weighted avg	0.4547	0.4705	0.4148	3238
+Time taken:	2.71 seconds			
+Model for US
+Logistic Regression
+Label	Precision	Recall	F1-Score	Support
+1	0.41334	0.0615	0.1069	221
+2	0.50985	0.8152	0.6273	539
+3	0.45825	0.2997	0.3620	391
+Accuracy			0.4954	
+Macro avg	0			
+
+
+
+
+
+
 
 
 
