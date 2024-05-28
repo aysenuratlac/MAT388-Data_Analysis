@@ -436,6 +436,142 @@ Kodu kopyala
 This format separates each metric's mean and its corresponding 95% confidence interval into distinct columns for better readability.
 
 
+def experiment2(name, model, X, y):
+    start_time = time.time()
+    validation = RepeatedStratifiedKFold(n_splits=5, n_repeats=3)
+    intervals = {'model': name}
+    means = {'model': name}
+    for method in ['accuracy', 'precision_micro', 'recall_micro']:
+        print(f"Using {method} scoring")
+        val_scores = cross_val_score(model, X, y, scoring=method, cv=validation)
+        score = np.mean(val_scores)
+        sdev = sem(val_scores)
+        df = len(val_scores)-1
+        intervals.update({method: t.interval(0.95, df, loc=score, scale=sdev)})
+        means.update({method: score})
+    end_time = time.time()
+    total_time=end_time - start_time
+    return means, intervals,total_time   , what does this function do
+ChatGPT
+The function experiment2 is designed to evaluate a machine learning model using cross-validation and compute confidence intervals for several performance metrics. Here's a detailed breakdown of what each part of the function does:
+
+Function Definition and Parameters:
+
+name: A string representing the name of the model.
+model: The machine learning model to be evaluated.
+X: The feature matrix.
+y: The target vector.
+Time Measurement:
+
+The function starts by recording the current time using time.time(), which is used later to calculate the total execution time.
+Cross-Validation Setup:
+
+validation is an instance of RepeatedStratifiedKFold with 5 splits and 3 repeats, meaning the cross-validation will be performed 15 times in total (5 splits x 3 repeats).
+Dictionary Initialization:
+
+Two dictionaries, intervals and means, are initialized with the model name. These will store the confidence intervals and mean scores for each evaluation metric.
+Metric Evaluation Loop:
+
+The function iterates over a list of evaluation metrics: ['accuracy', 'precision_micro', 'recall_micro'].
+For each metric, the following steps are performed:
+Print Statement: It prints which scoring method is currently being used.
+Cross-Validation Scores: cross_val_score is called to compute the cross-validation scores for the given metric.
+Mean Score Calculation: The mean of the cross-validation scores is calculated.
+Standard Error of the Mean (SEM): The SEM of the cross-validation scores is computed using sem.
+Degrees of Freedom (df): Calculated as the length of the validation scores minus one.
+Confidence Interval: The 95% confidence interval for the mean score is calculated using t.interval from the scipy.stats module.
+Update Dictionaries: The calculated mean score and confidence interval are stored in the respective dictionaries.
+Time Measurement (End):
+
+The function records the current time again and computes the total time taken for the execution by subtracting the start time from the end time.
+Return Statement:
+
+The function returns three items:
+means: A dictionary containing the mean scores for each metric.
+intervals: A dictionary containing the 95% confidence intervals for each metric.
+total_time: The total execution time of the function.
+In summary, experiment2 evaluates a given machine learning model using repeated stratified k-fold cross-validation, calculates mean scores and 95% confidence intervals for specified metrics (accuracy, precision_micro, recall_micro), and measures the total execution time.
+
+when i use this function for olivetti faces, it takes a long time, can you do more optimized one
+ChatGPT
+Optimizing the performance of your experiment2 function for the Olivetti faces dataset can involve several strategies. Here are a few approaches:
+
+Parallel Processing: Use parallel processing to speed up cross-validation.
+Reduce the Number of Repeats: If acceptable, reduce the number of repeats in cross-validation.
+Dimensionality Reduction: Apply techniques like PCA to reduce the dimensionality of the dataset before training.
+Below is an optimized version of the function that incorporates parallel processing using the n_jobs parameter in cross_val_score:
+
+python
+Kodu kopyala
+from sklearn.model_selection import RepeatedStratifiedKFold, cross_val_score
+from sklearn.decomposition import PCA
+from scipy.stats import t, sem
+import numpy as np
+import time
+
+def experiment2_optimized(name, model, X, y, n_splits=5, n_repeats=3, n_jobs=-1, use_pca=False, n_components=100):
+    start_time = time.time()
+    
+    # Optional PCA for dimensionality reduction
+    if use_pca:
+        pca = PCA(n_components=n_components)
+        X = pca.fit_transform(X)
+    
+    validation = RepeatedStratifiedKFold(n_splits=n_splits, n_repeats=n_repeats)
+    intervals = {'model': name}
+    means = {'model': name}
+    
+    for method in ['accuracy', 'precision_micro', 'recall_micro']:
+        print(f"Using {method} scoring")
+        val_scores = cross_val_score(model, X, y, scoring=method, cv=validation, n_jobs=n_jobs)
+        score = np.mean(val_scores)
+        sdev = sem(val_scores)
+        df = len(val_scores) - 1
+        intervals[method] = t.interval(0.95, df, loc=score, scale=sdev)
+        means[method] = score
+    
+    end_time = time.time()
+    total_time = end_time - start_time
+    
+    return means, intervals, total_time
+Key Changes:
+Parallel Processing:
+
+Added n_jobs=-1 to cross_val_score to use all available CPU cores. You can set n_jobs to a specific number if you prefer.
+Optional PCA:
+
+Added a parameter use_pca to optionally perform PCA for dimensionality reduction.
+Added a parameter n_components to specify the number of principal components.
+Flexible Cross-Validation Parameters:
+
+Added parameters n_splits and n_repeats to make cross-validation configuration flexible.
+Usage Example:
+python
+Kodu kopyala
+from sklearn.datasets import fetch_olivetti_faces
+from sklearn.ensemble import RandomForestClassifier
+
+# Load the Olivetti faces dataset
+data = fetch_olivetti_faces()
+X, y = data.data, data.target
+
+# Initialize the model
+model = RandomForestClassifier()
+
+# Run the optimized experiment function
+means, intervals, total_time = experiment2_optimized('RandomForest', model, X, y, use_pca=True, n_components=50)
+print(f"Means: {means}")
+print(f"Intervals: {intervals}")
+print(f"Total time: {total_time} seconds")
+By enabling parallel processing and optionally reducing the dimensionality of the data, this optimized function should run faster while still providing robust evaluation metrics.
+
+
+
+
+
+
+
+
 
 
 
